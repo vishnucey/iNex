@@ -4,7 +4,7 @@ description: A configuration file to specify the parameters to pass to the diffe
 sqlquerygen:
   uri: "mongodb://inexbotcosmosdb:imiDU1weWpyt61akkwhmtzCVhNQcbO47KjU4MkDmRuZhFZQs7QbAva0g1fxNcyR5pMBX8pOIMf4htjdUNapJdA==@inexbotcosmosdb.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
   db: "iNex_db"
-  DRIVER: 'SQL Server Native Client 11.0'
+  DRIVER: 'ODBC Driver 17 for SQL Server'
   #SERVER: '10.53.155.137'
   #DATABASE: 'IC_DEV_REPORTING'
   #UID: 'gw_dhic'

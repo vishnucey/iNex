@@ -27,6 +27,7 @@ def sql_connection_new(Query):
 
 def framing_buttons(Query, Qlevel) :
     data=sql_connection_new(Query)
+	print('##############')
     print(data)
     tempMSG = list(data[Qlevel])
     print(tempMSG)
