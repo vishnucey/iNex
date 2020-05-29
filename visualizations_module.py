@@ -123,7 +123,8 @@ def invokeD3(session,df,cutsList):
                 message = message + ' is ' + str(df.iloc[0, len(df.axes[1]) - 1])
 
                # if session.get('Intent').lower()=='loss ratio':
-                if session.get('Intent').lower()=='loss ratio':
+                print (session)
+                if session.get('Loss ratio')==['loss ratio']:
                     message=message+'%'
                     print('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ MESSAGE $$$$$$$$$$$$$$$$$$$')
                     print(message)
@@ -308,11 +309,23 @@ def invokeD3(session,df,cutsList):
                             # s = s.replace(",", ",'")
                             temp_string =  temp_string + s + " "        
                     intent=str(session.get('Intent'))
-                    dbContent = inexDB.visualizationMetadata.find({"intent": intent,"attribute":attr})
+                    
+                    samplelist = [session.get("Loss ratio"),session.get("Renewal Policy Count")]
+                    calentity =[]
+                    for item in samplelist:
+                        if item is not None:
+                            calentity.append(item[0])
+                    print (calentity)
+                    entkey = (list(session.keys())[list(session.values()).index(calentity)]) 
+                    
+                    dbContent = inexDB.visualizationMetadata_d.find({"entity": entkey,"attribute":attr})
+
                     for n in dbContent:
                         print('type----',n['visualizationtype'])
                         vizType=n['visualizationtype']
-                        response = intent + " "+temp_string
+                        print(vizType)
+                        #response = intent + " "+temp_string
+                        response = entkey + " "+temp_string
                         if (singleValue.__len__()!=0 and cutsList.__len__()>1) or (cutsList.__len__()==1 and singleValue.__len__()==0):
                             print ("inside loop")
                             for i in singleValue:
@@ -414,8 +427,10 @@ def invokeD3(session,df,cutsList):
                                 # s = s.replace(",", ",'")
                                 temp_string =  temp_string + s + " "
                         intent=str(session.get('Intent'))
+                        
                 print ("the temp_string is ---",temp_string)
-                response = intent +temp_string
+                response = entkey +temp_string
+                #response = intent +temp_string
                 print ("the response is ---",response)
 
 
