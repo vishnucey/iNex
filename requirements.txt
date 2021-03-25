@@ -8,5 +8,5 @@ pandas>=0,<1
 nltk>=3,<4
 pyodbc>=4,<5
 openpyxl>=2,<3
-pyyaml>=3,<5
+pyyaml>=3,<6
 python-aiml>=0,<1
